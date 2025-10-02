@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "Node16",
+    "lib": ["ES2020"],
+    "allowJs": true,
+    "outDir": "./src/generated/langium",
+    "rootDir": "./src/services/language",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node16",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "noEmitOnError": false
+  },
+  "include": [
+    "src/services/language/**/*.ts",
+    "src/services/language/**/*.langium"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ]
+}

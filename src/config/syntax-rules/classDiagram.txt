@@ -1,0 +1,41 @@
+MERMAID CLASS DIAGRAM SYNTAX RULES:
+
+DECLARATION:
+- Start with: classDiagram
+
+CLASS DEFINITION:
+- class ClassName {
+-   +attribute: type
+-   -method(): returnType
+- }
+
+VISIBILITY:
+- + = Public
+- - = Private
+- # = Protected
+- ~ = Package/Internal
+
+RELATIONSHIPS:
+- <|-- = Inheritance
+- *-- = Composition
+- o-- = Aggregation
+- --> = Association
+- ..> = Dependency
+- ..|> = Realization
+
+METHOD SYNTAX:
+- method(param: type): returnType
+- +publicMethod(): void
+- -privateMethod(param: string): int
+
+COMMON ISSUES:
+- Missing visibility modifiers
+- Invalid class names with spaces or hyphens
+- Malformed method signatures
+- Incorrect relationship arrows
+
+FIX REQUIREMENTS:
+1. Use valid class names (PascalCase recommended)
+2. Include visibility modifiers for all members
+3. Use proper relationship arrow syntax
+4. Follow method signature format exactly

@@ -1,0 +1,27 @@
+GENERAL MERMAID SYNTAX RULES:
+
+NODE IDENTIFIERS:
+- Must start with a letter (A-Z, a-z)
+- Can contain letters, numbers, and underscores only
+- Cannot contain spaces, hyphens, periods, or special characters
+- Are case-sensitive (A and a are different)
+- Examples: A, Node1, Process_2, START
+
+TEXT CONTENT:
+- Always use quotes for text with spaces or special characters
+- Use ["text"] format for complex strings
+- Escape quotes inside text with backslash
+- Use <br/> for line breaks, never literal breaks
+- Support HTML entities: &lt;, &gt;, &amp;
+
+CONNECTIONS:
+- Use standard arrow syntax for connections
+- Label decision branches clearly
+- Ensure all nodes are properly connected
+- No orphaned or unreachable nodes
+
+COMMON FIXES:
+- Replace invalid characters in node IDs with underscores
+- Quote all text containing spaces or special characters
+- Replace \n or literal line breaks with <br/> tags
+- Fix malformed arrow and connection syntax

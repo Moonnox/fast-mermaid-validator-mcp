@@ -1,0 +1,2 @@
+# Quadrant Chart Syntax Rules
+# Default rules for quadrant chart validation

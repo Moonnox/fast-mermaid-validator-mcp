@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mermaid-validator-mcp-config
+  labels:
+    app: mermaid-validator-mcp
+data:
+  NODE_ENV: "production"
+  PORT: "8000"
+  LOG_LEVEL: "info"

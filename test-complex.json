@@ -1,0 +1,9 @@
+{
+  "diagram": "graph TD\n    A[Start Process] --> B[Collect Input Data]\n    B --> C{Input Valid?}\n    C -->|No| D[Show Error Message]\n    D --> B\n    C -->|Yes| E[Process Data]\n    E --> F{Data Complete?}\n    F -->|No| G[Request Missing Info]\n    G --> B\n    F -->|Yes| H[Save to Database]\n    H --> I{Save Successful?}\n    I -->|No| J[Handle Database Error]\n    I -->|Yes| O[Generate Report]\n    O --> P[Send Email Notification]\n    P --> Q[Update User Dashboard]\n    Q --> R[Log Success Event]\n    R --> S[End Successfully]",
+  "options": {
+    "theme": "forest",
+    "layout": "hierarchical",
+    "direction": "TD",
+    "nodeSpacing": 140
+  }
+}

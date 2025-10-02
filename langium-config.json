@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/langium/langium/main/packages/langium/langium-config-schema.json",
+  "languages": [
+    {
+      "id": "pie",
+      "grammar": "src/services/language/pie/pie.langium",
+      "fileExtensions": [".pie"]
+    }
+  ],
+  "out": "src/services/language/generated"
+}

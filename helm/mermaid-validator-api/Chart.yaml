@@ -1,0 +1,21 @@
+apiVersion: v2
+name: mermaid-validator-mcp
+description: High-performance API for validating Mermaid diagrams with comprehensive security
+version: 1.0.0
+appVersion: "1.0.0"
+type: application
+
+keywords:
+  - mermaid
+  - validator
+  - api
+  - diagrams
+
+maintainers:
+  - name: Gregorio Elias Roecker Momm
+    email: gregorio@example.com
+
+sources:
+  - https://github.com/your-org/mermaid-validator-mcp
+
+dependencies: []

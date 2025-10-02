@@ -1,0 +1,2 @@
+# Journey Diagram Syntax Rules
+# Default rules for journey diagram validation

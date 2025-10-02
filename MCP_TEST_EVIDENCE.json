@@ -1,0 +1,130 @@
+{
+  "timestamp": "2025-09-24T20:41:28.984Z",
+  "version": "1.0.15",
+  "environment": {
+    "platform": "darwin",
+    "nodeVersion": "v24.8.0",
+    "architecture": "arm64"
+  },
+  "tests": [
+    {
+      "testName": "Build System",
+      "status": "PASS",
+      "details": "TypeScript compilation successful",
+      "duration": 1488,
+      "timestamp": "2025-09-24T20:41:30.472Z"
+    },
+    {
+      "testName": "MCP Integration Tests",
+      "status": "PASS",
+      "details": "All 5 integration tests passed",
+      "duration": 10091,
+      "timestamp": "2025-09-24T20:41:40.563Z"
+    },
+    {
+      "testName": "HTTP Server Health",
+      "status": "PASS",
+      "details": {
+        "status": "healthy",
+        "server": "mermaid-validator-mcp",
+        "version": "1.0.0",
+        "transport": "http",
+        "timestamp": "2025-09-24T20:41:45.648Z"
+      },
+      "duration": 87,
+      "timestamp": "2025-09-24T20:41:45.652Z"
+    },
+    {
+      "testName": "MCP Initialization",
+      "status": "FAIL",
+      "details": {
+        "jsonrpc": "2.0",
+        "error": {
+          "code": -32600,
+          "message": "Invalid Request"
+        },
+        "id": null
+      },
+      "duration": 934,
+      "timestamp": "2025-09-24T20:41:46.586Z"
+    },
+    {
+      "testName": "MCP Tools List",
+      "status": "FAIL",
+      "details": {
+        "jsonrpc": "2.0",
+        "error": {
+          "code": -32600,
+          "message": "Invalid Request"
+        },
+        "id": null
+      },
+      "duration": 1151,
+      "timestamp": "2025-09-24T20:41:47.737Z"
+    },
+    {
+      "testName": "Validate Diagrams Tool",
+      "status": "FAIL",
+      "details": {
+        "jsonrpc": "2.0",
+        "error": {
+          "code": -32600,
+          "message": "Invalid Request"
+        },
+        "id": null
+      },
+      "duration": 52,
+      "timestamp": "2025-09-24T20:41:47.789Z"
+    },
+    {
+      "testName": "flowchart Parser",
+      "status": "FAIL",
+      "details": "Unexpected end of JSON input",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:47.863Z"
+    },
+    {
+      "testName": "sequenceDiagram Parser",
+      "status": "FAIL",
+      "details": "Unexpected end of JSON input",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:47.918Z"
+    },
+    {
+      "testName": "classDiagram Parser",
+      "status": "FAIL",
+      "details": "Unexpected end of JSON input",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:47.978Z"
+    },
+    {
+      "testName": "erDiagram Parser",
+      "status": "FAIL",
+      "details": "Unexpected end of JSON input",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:48.039Z"
+    },
+    {
+      "testName": "gantt Parser",
+      "status": "FAIL",
+      "details": "Unexpected end of JSON input",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:48.101Z"
+    },
+    {
+      "testName": "Grammar Parser Summary",
+      "status": "WARN",
+      "details": "0/5 parsers working",
+      "duration": 0,
+      "timestamp": "2025-09-24T20:41:48.101Z"
+    }
+  ],
+  "summary": {
+    "totalTests": 12,
+    "passed": 3,
+    "failed": 8,
+    "warnings": 1,
+    "successRate": 25,
+    "duration": 13803
+  }
+}

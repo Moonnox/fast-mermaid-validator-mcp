@@ -1,0 +1,2 @@
+# Packet Diagram Syntax Rules
+# Default rules for packet diagram validation

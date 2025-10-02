@@ -1,0 +1,48 @@
+# CODEOWNERS
+# This file defines individuals or teams that are responsible for code in this repository.
+
+# Global ownership - default owners for everything in the repo
+* @gregoriomomm
+
+# Core application files
+/src/ @gregoriomomm
+
+# Grammar and parsing files
+/src/services/grammars/ @gregoriomomm
+/src/services/language/ @gregoriomomm
+
+# Configuration files
+*.json @gregoriomomm
+*.yaml @gregoriomomm
+*.yml @gregoriomomm
+/tsconfig.json @gregoriomomm
+/package.json @gregoriomomm
+
+# Docker and deployment
+/Dockerfile* @gregoriomomm
+/docker/ @gregoriomomm
+/k8s/ @gregoriomomm
+/helm/ @gregoriomomm
+/docker-compose.yml @gregoriomomm
+
+# Scripts and build files
+/scripts/ @gregoriomomm
+/Makefile @gregoriomomm
+
+# Documentation
+*.md @gregoriomomm
+/docs/ @gregoriomomm
+
+# GitHub configuration
+/.github/ @gregoriomomm
+
+# Security and compliance
+/SECURITY.md @gregoriomomm
+/LICENSE @gregoriomomm
+/NOTICE @gregoriomomm
+
+# InnerSource compliance files
+/GETTING_STARTED.md @gregoriomomm
+/STARTER_TEAM.md @gregoriomomm
+/innersource.yaml @gregoriomomm
+/CODEOWNERS @gregoriomomm

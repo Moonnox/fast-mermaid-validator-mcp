@@ -1,0 +1,2 @@
+# Mindmap Syntax Rules
+# Default rules for mindmap validation

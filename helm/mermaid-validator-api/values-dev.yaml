@@ -1,0 +1,24 @@
+replicaCount: 1
+
+env:
+  NODE_ENV: "development"
+  LOG_LEVEL: "debug"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+ingress:
+  hosts:
+    - host: mermaid-validator-mcp-dev.mjc.internal
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: mermaid-validator-mcp-dev-tls
+      hosts:
+        - mermaid-validator-mcp-dev.mjc.internal

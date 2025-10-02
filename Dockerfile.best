@@ -1,0 +1,82 @@
+# Best Working Dockerfile - Platform-Aware Build
+# Uses platform-specific base images and Rosetta support
+# Author: Gregorio Elias Roecker Momm
+
+# Use platform-specific base image with build args
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+FROM --platform=$TARGETPLATFORM node:18-alpine
+
+# Show build info for debugging
+RUN echo "Building on: $BUILDPLATFORM, targeting: $TARGETPLATFORM" && \
+    uname -m && \
+    node --version
+
+# Install system dependencies (minimal for security)
+RUN apk add --no-cache \
+    openjdk11-jre-headless \
+    dumb-init \
+    bash \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/*
+
+# Create secure non-root user
+RUN addgroup -g 1001 nodejs \
+    && adduser -u 1001 -G nodejs -s /bin/bash -D nodejs \
+    && chmod 755 /home/nodejs
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY --chown=nodejs:nodejs package*.json ./
+
+# Install production dependencies only (skip build scripts to avoid missing files)
+RUN npm ci --only=production --no-audit --no-fund \
+    --ignore-scripts \
+    && npm cache clean --force \
+    && rm -rf ~/.npm
+
+# Copy pre-compiled application code and grammars
+COPY --chown=nodejs:nodejs src/ ./src/
+COPY --chown=nodejs:nodejs scripts/ ./scripts/
+COPY --chown=nodejs:nodejs src/generated/ ./src/generated/
+COPY --chown=nodejs:nodejs src/types/ ./src/types/
+
+# Create runtime directories and set secure permissions
+RUN mkdir -p tmp logs \
+    && chown -R nodejs:nodejs /app \
+    && find /app -type f -name "*.md" -delete \
+    && chmod -R 644 /app \
+    && chmod -R 755 /app/src \
+    && chmod -R 755 /app/scripts \
+    && chmod 755 /app/src/server.js
+
+# Switch to non-root user
+USER nodejs
+
+# Environment variables
+ENV NODE_ENV=production \
+    PORT=8000 \
+    LOG_LEVEL=info \
+    NODE_OPTIONS="--max-old-space-size=512"
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:8000/api/v1/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
+
+# Expose port
+EXPOSE 8000
+
+# Use dumb-init for proper signal handling
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["node", "src/server.js"]
+
+# Metadata
+LABEL \
+    name="mermaid-validator-mcp" \
+    version="1.0.11" \
+    description="Mermaid Validator API - Platform-aware build" \
+    maintainer="Gregorio Elias Roecker Momm" \
+    base.image="node:18-alpine"

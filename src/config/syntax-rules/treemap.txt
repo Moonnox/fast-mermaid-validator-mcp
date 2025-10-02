@@ -1,0 +1,2 @@
+# Treemap Syntax Rules
+# Default rules for treemap validation

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mermaid-validator-api-config
+data:
+  NODE_ENV: "production"
+  PORT: "8000"
+  LOG_LEVEL: "info"
+  # UNLIMITED CONFIGURATION - Use -1 to indicate unlimited
+  # Rate Limiting Configuration (UNLIMITED)
+  RATE_LIMIT_WINDOW_MS: "-1"
+  RATE_LIMIT_MAX_REQUESTS: "-1"
+  # File Upload Configuration (UNLIMITED)
+  MAX_FILE_SIZE: "-1"
+  MAX_FILES: "-1"
+  # Validation Configuration (UNLIMITED)
+  MAX_DIAGRAMS_PER_FILE: "-1"
+  MAX_TOTAL_DIAGRAMS: "-1"
+  MAX_DIAGRAM_CONTENT_LENGTH: "-1"
+  MAX_TIMEOUT_MS: "-1"
+  MAX_FILENAME_LENGTH: "-1"
+  VALIDATION_TIMEOUT: "300000"  # 5 minutes for unlimited processing
+  # Mermaid Configuration (UNLIMITED)
+  MERMAID_MAX_TEXT_SIZE: "-1"
+  MERMAID_MAX_EDGES: "-1"
+  MERMAID_MAX_VERTICES: "-1"
+  # Request body size (UNLIMITED)
+  MAX_REQUEST_SIZE: "0"  # Express will interpret as unlimited

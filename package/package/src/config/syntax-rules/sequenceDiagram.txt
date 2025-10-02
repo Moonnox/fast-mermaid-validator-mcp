@@ -1,0 +1,39 @@
+MERMAID SEQUENCE DIAGRAM SYNTAX RULES:
+
+DECLARATION:
+- Start with: sequenceDiagram
+
+PARTICIPANTS:
+- Define: participant A as Actor
+- Use meaningful aliases for clarity
+
+ARROWS:
+- ->> = Synchronous message
+- -->> = Return/Response message
+- -x = Lost message
+- -) = Async message
+- ->>+ = Activate lifeline
+- ->>- = Deactivate lifeline
+
+NOTES:
+- Note over A: Comment text
+- Note left of A: Left-side note
+- Note right of A: Right-side note
+
+BLOCKS:
+- alt/else/end = Alternative flows
+- loop/end = Iteration blocks
+- par/and/end = Parallel execution
+- opt/end = Optional execution
+
+COMMON ISSUES:
+- Missing participant definitions
+- Invalid arrow syntax (single dash instead of double)
+- Unclosed alt/loop/par blocks
+- Invalid participant names with spaces
+
+FIX REQUIREMENTS:
+1. Define all participants before first message
+2. Use proper arrow syntax (->> not ->)
+3. Close all blocks with appropriate end keyword
+4. Use valid participant identifiers

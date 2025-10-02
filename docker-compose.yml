@@ -1,0 +1,149 @@
+version: '3.8'
+
+services:
+  # Main API service
+  mermaid-validator-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: mermaid-validator-mcp
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - HOST=0.0.0.0
+      - LOG_LEVEL=info
+      - LOG_TO_FILE=true
+      - MAX_FILE_SIZE=10485760  # 10MB
+      - MAX_FILES=20
+      - MAX_TOTAL_DIAGRAMS=200
+      - VALIDATION_TIMEOUT=30000
+      - RATE_LIMIT_WINDOW_MS=900000  # 15 minutes
+      - RATE_LIMIT_MAX_REQUESTS=100
+      - ENABLE_SVG_GENERATION=true
+      - PUPPETEER_TIMEOUT=10000
+      - MEMORY_THRESHOLD=90
+      - DISK_THRESHOLD=90
+    volumes:
+      - ./logs:/app/logs
+      - tmp-data:/app/tmp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8000/api/v1/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/tmp
+    cap_drop:
+      - ALL
+    cap_add:
+      - SYS_ADMIN  # Required for Puppeteer/Chromium
+    networks:
+      - mermaid-network
+
+  # Development service
+  mermaid-validator-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: mermaid-validator-dev
+    ports:
+      - "8001:8000"
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+      - HOST=0.0.0.0
+      - LOG_LEVEL=debug
+      - LOG_TO_FILE=false
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - tmp-data-dev:/app/tmp
+    restart: unless-stopped
+    networks:
+      - mermaid-network
+    profiles:
+      - dev
+
+  # Load balancer (for production scaling)
+  nginx:
+    image: nginx:alpine
+    container_name: mermaid-validator-lb
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - mermaid-validator-mcp
+    restart: unless-stopped
+    networks:
+      - mermaid-network
+    profiles:
+      - production
+
+  # Monitoring (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: mermaid-validator-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - mermaid-network
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: mermaid-validator-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - mermaid-network
+    profiles:
+      - monitoring
+
+volumes:
+  tmp-data:
+    driver: local
+  tmp-data-dev:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+networks:
+  mermaid-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

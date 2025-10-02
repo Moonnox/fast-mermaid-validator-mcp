@@ -1,0 +1,136 @@
+replicaCount: 1
+
+image:
+  repository: icr.io/mjc-cr/mjc-mermaid-validator
+  pullPolicy: Always
+  tag: "1.0.0-amd64"
+
+imagePullSecrets: 
+  - name: all-icr-io-mmjc
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001
+  fsGroup: 1001
+
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1001
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+  hosts:
+    - host: mermaid-validator-mcp.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: mermaid-validator-mcp-tls
+      hosts:
+        - mermaid-validator-mcp.example.com
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  NODE_ENV: "production"
+  PORT: "8000"
+  LOG_LEVEL: "info"
+
+probes:
+  livenessProbe:
+    httpGet:
+      path: /api/v1/health
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    timeoutSeconds: 10
+    failureThreshold: 3
+  readinessProbe:
+    httpGet:
+      path: /api/v1/health
+      port: http
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+networkPolicy:
+  enabled: true
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - namespaceSelector: {}
+      ports:
+      - protocol: TCP
+        port: 8000
+  egress:
+    - {}
+
+persistence:
+  enabled: false
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+volumes:
+  - name: tmp-volume
+    emptyDir: {}
+  - name: logs-volume
+    emptyDir: {}
+
+volumeMounts:
+  - name: tmp-volume
+    mountPath: /app/tmp
+  - name: logs-volume
+    mountPath: /app/logs

@@ -1,0 +1,2 @@
+# XY Chart Syntax Rules (Beta)
+# Default rules for XY chart validation

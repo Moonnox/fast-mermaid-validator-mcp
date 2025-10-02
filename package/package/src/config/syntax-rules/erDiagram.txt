@@ -1,0 +1,51 @@
+MERMAID ER DIAGRAM SYNTAX RULES:
+
+DECLARATION:
+- Start with: erDiagram
+
+ENTITY SYNTAX:
+- Format: ENTITY_NAME { datatype column_name constraints }
+- Entity names: ALL_CAPS with underscores only
+- Column names: lowercase_with_underscores
+- Data types: string, int, boolean, date, decimal, etc.
+
+DATA TYPE RESTRICTIONS:
+- CANNOT use parentheses in data types: DECIMAL(10,2) is INVALID
+- CANNOT use commas in any context within entity blocks
+- USE simple types only: decimal, int, string, date, boolean
+- WHY: Mermaid parser treats commas as separators, parentheses as syntax errors
+
+CORRECT DATA TYPE EXAMPLES:
+✅ decimal SUM_ASSURED
+✅ int customer_id PK
+✅ string email_address UK
+❌ DECIMAL(10,2) SUM_ASSURED (contains comma and parentheses)
+❌ VARCHAR(255) name (contains parentheses)
+❌ FLOAT(8,2) rate (contains comma and parentheses)
+
+RELATIONSHIPS:
+- ||--|| = One to one
+- ||--o{ = One to many
+- o{--o{ = Many to many
+- ||--o| = One to zero or one
+- }o--|| = Zero or more to one
+- Format: ENTITY1 ||--o{ ENTITY2 : "relationship_label"
+
+CONSTRAINTS:
+- PK = Primary Key
+- FK = Foreign Key
+- UK = Unique Key
+- Place after column name: column_name datatype PK
+
+COMMON ISSUES:
+- Invalid entity names with hyphens or spaces
+- Missing quotes around relationship labels
+- Invalid data type syntax with commas/parentheses: DECIMAL(10,2) should be decimal
+- Malformed relationship syntax
+
+FIX REQUIREMENTS:
+1. Use valid entity and column naming (underscores only)
+2. Quote all relationship labels
+3. Use simple data types without parentheses or commas
+4. Use proper cardinality notation
+5. Follow entity block syntax exactly

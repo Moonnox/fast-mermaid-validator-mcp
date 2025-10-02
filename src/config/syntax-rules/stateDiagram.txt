@@ -1,0 +1,2 @@
+# State Diagram Syntax Rules
+# Default rules for state diagram validation

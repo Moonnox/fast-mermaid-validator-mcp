@@ -1,0 +1,118 @@
+name: Bug Report
+description: Report a bug to help us improve
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below with as much detail as possible.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Send request to endpoint '...'
+        2. With diagram content '...'
+        3. Observe error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: What happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: mermaid-diagram
+    attributes:
+      label: Mermaid Diagram Content
+      description: If applicable, paste the Mermaid diagram content that caused the issue
+      placeholder: |
+        flowchart TD
+            A-->B
+      render: text
+
+  - type: dropdown
+    id: diagram-type
+    attributes:
+      label: Diagram Type
+      description: What type of Mermaid diagram were you validating?
+      options:
+        - Flowchart
+        - Sequence Diagram
+        - Class Diagram
+        - State Diagram
+        - ER Diagram
+        - Gantt Chart
+        - User Journey
+        - Git Graph
+        - Pie Chart
+        - Requirement Diagram
+        - C4 Diagram
+        - Mindmap
+        - Timeline
+        - Other
+        - Unknown/Not Applicable
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: How are you running the API?
+      options:
+        - Local development
+        - Docker container
+        - Kubernetes deployment
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-response
+    attributes:
+      label: API Response
+      description: If applicable, paste the full API response
+      placeholder: Paste the JSON response here
+      render: json
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server Logs
+      description: If available, paste relevant server logs
+      placeholder: Paste logs here
+      render: text
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
+      placeholder: Any additional information that might help...

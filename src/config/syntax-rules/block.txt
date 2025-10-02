@@ -1,0 +1,2 @@
+# Block Diagram Syntax Rules
+# Default rules for block diagram validation

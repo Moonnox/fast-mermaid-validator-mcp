@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mermaid-validator-mcp-netpol
+  labels:
+    app: mermaid-validator-mcp
+spec:
+  podSelector:
+    matchLabels:
+      app: mermaid-validator-mcp
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 8000
+  egress:
+  - {}  # Allow all egress for external APIs and registries

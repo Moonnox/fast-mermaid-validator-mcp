@@ -1,0 +1,101 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please provide as much detail as possible.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see
+      placeholder: Describe the feature...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What is the motivation?
+      placeholder: Describe the problem this feature would solve...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work?
+      placeholder: Describe your proposed solution...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - New diagram type support
+        - API enhancement
+        - Performance improvement
+        - Error reporting improvement
+        - Documentation improvement
+        - Developer experience
+        - Security enhancement
+        - Testing/Quality improvement
+        - Deployment/DevOps
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my use case
+        - Critical - Blocking my work
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: Describe any alternatives you've considered...
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Provide specific examples of how this feature would be used
+      placeholder: |
+        1. As a developer, I want to...
+        2. When validating diagrams, I need to...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you be interested in contributing to this feature?
+      options:
+        - label: I would be willing to work on this feature
+        - label: I would be willing to help with testing
+        - label: I would be willing to help with documentation
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples about the feature request
+      placeholder: Any additional information...

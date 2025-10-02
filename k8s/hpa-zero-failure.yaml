@@ -1,0 +1,85 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mermaid-validator-api-hpa
+  namespace: mmjc-dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mermaid-validator-api
+  minReplicas: 5           # HIGH baseline capacity
+  maxReplicas: 30          # Very high ceiling
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 20  # Scale at 20% - MAXIMUM spare capacity
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 20  # Scale at 20% - MAXIMUM spare capacity
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 600  # 10 minutes - keep capacity very long
+      policies:
+      - type: Percent
+        value: 5     # Only reduce 5% at a time (ultra-conservative)
+        periodSeconds: 120  # Every 2 minutes
+    scaleUp:
+      stabilizationWindowSeconds: 0    # Immediate scaling
+      policies:
+      - type: Percent
+        value: 1000  # 10x pods if needed (maximum possible)
+        periodSeconds: 1   # Every 1 second (fastest possible)
+      - type: Pods
+        value: 20    # Add max 20 pods at once (instant capacity)
+        periodSeconds: 1
+      selectPolicy: Max
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mermaid-validator-api-nginx-hpa
+  namespace: mmjc-dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mermaid-validator-api-nginx
+  minReplicas: 5           # HIGH baseline capacity
+  maxReplicas: 25          # High ceiling
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 25  # Scale at 25% for nginx proxy
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 25  # Scale at 25% for nginx proxy
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # 5 minutes
+      policies:
+      - type: Percent
+        value: 10   # Only reduce 10% at a time
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0    # Immediate scaling
+      policies:
+      - type: Percent
+        value: 500  # 5x pods if needed
+        periodSeconds: 3   # Every 3 seconds
+      - type: Pods
+        value: 15   # Add max 15 pods at once
+        periodSeconds: 3
+      selectPolicy: Max

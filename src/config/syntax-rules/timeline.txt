@@ -1,0 +1,2 @@
+# Timeline Syntax Rules
+# Default rules for timeline validation

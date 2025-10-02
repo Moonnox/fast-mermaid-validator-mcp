@@ -1,0 +1,2 @@
+# C4 Diagram Syntax Rules
+# Default rules for C4 diagram validation
