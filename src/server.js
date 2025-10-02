@@ -315,7 +315,7 @@ if (require.main === module) {
 Mermaid Validator MCP - Multi-mode Server
 
 Usage:
-  npx @ai-of-mine/mermaid-validator-mcp [options]
+  npx @ai-of-mine/fast-mermaid-validator-mcp [options]
 
 Options:
   (no args)         Start REST API server (default port: 8000)
@@ -334,20 +334,20 @@ Environment Variables:
 
 Examples:
   # Start REST API server on default port 8000
-  npx @ai-of-mine/mermaid-validator-mcp
+  npx @ai-of-mine/fast-mermaid-validator-mcp
 
   # Start REST API server on custom port
-  npx @ai-of-mine/mermaid-validator-mcp --port 3000
+  npx @ai-of-mine/fast-mermaid-validator-mcp --port 3000
 
   # Start MCP HTTP server on default port 8080
-  npx @ai-of-mine/mermaid-validator-mcp --mcp-http
+  npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http
 
   # Start MCP HTTP server on custom port 9000
-  npx @ai-of-mine/mermaid-validator-mcp --mcp-http --port 9000
+  npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http --port 9000
 
   # Use environment variable
-  PORT=3000 npx @ai-of-mine/mermaid-validator-mcp
-  MCP_HTTP_PORT=9000 npx @ai-of-mine/mermaid-validator-mcp --mcp-http
+  PORT=3000 npx @ai-of-mine/fast-mermaid-validator-mcp
+  MCP_HTTP_PORT=9000 npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http
 
 API Endpoints (REST mode):
   http://localhost:8000/api/v1/validate        - Validate diagrams (JSON)

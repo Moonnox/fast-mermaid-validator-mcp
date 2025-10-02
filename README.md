@@ -16,12 +16,12 @@ High-performance API and **Model Context Protocol (MCP) server** for validating 
 - ✅ **Single Command**: One `npx` command with flags to start any server mode
 - ✅ **Port Control**: `--port <number>` flag works with all server modes
 - ✅ **Environment Variables**: `PORT`, `MCP_HTTP_PORT`, `MCP_HTTP_HOST` support
-- ✅ **REST API**: `npx @ai-of-mine/mermaid-validator-mcp` (default port: 8000)
-- ✅ **MCP HTTP**: `npx @ai-of-mine/mermaid-validator-mcp --mcp-http` (default port: 8080)
-- ✅ **Built-in Help**: `npx @ai-of-mine/mermaid-validator-mcp --help`
+- ✅ **REST API**: `npx @ai-of-mine/fast-mermaid-validator-mcp` (default port: 8000)
+- ✅ **MCP HTTP**: `npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http` (default port: 8080)
+- ✅ **Built-in Help**: `npx @ai-of-mine/fast-mermaid-validator-mcp --help`
 
 **Package Features:**
-- ✅ **NPM Package**: Available as `@ai-of-mine/mermaid-validator-mcp`
+- ✅ **NPM Package**: Available as `@ai-of-mine/fast-mermaid-validator-mcp`
 - ✅ **Security Updates**: Fixed multer vulnerabilities
 - ✅ **Clean Logging**: Default log level set to `warn` for production readiness
 - ✅ **Complete Distribution**: Both source (`src/`) and compiled (`dist/mcp/`) files
@@ -32,9 +32,9 @@ High-performance API and **Model Context Protocol (MCP) server** for validating 
 - `http://localhost:8000/api/v1/upload/file` - File upload validation (multipart)
 
 **MCP Server Commands:**
-- `npx @ai-of-mine/mermaid-validator-mcp --mcp-stdio` - Stdio transport (Claude Desktop)
-- `npx @ai-of-mine/mermaid-validator-mcp --mcp-http` - HTTP transport (port 8080)
-- `npx @ai-of-mine/mermaid-validator-mcp --mcp-secure` - Secure HTTP with authentication
+- `npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-stdio` - Stdio transport (Claude Desktop)
+- `npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http` - HTTP transport (port 8080)
+- `npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-secure` - Secure HTTP with authentication
 
 ## 🚀 **Dual Architecture: REST API + MCP Server**
 
@@ -47,22 +47,22 @@ This project provides **two complementary interfaces**:
 
 ```bash
 # Install from npm (recommended)
-npm install @ai-of-mine/mermaid-validator-mcp
+npm install @ai-of-mine/fast-mermaid-validator-mcp
 
 # Start REST API server (default)
-npx @ai-of-mine/mermaid-validator-mcp
+npx @ai-of-mine/fast-mermaid-validator-mcp
 
 # Start MCP HTTP server
-npx @ai-of-mine/mermaid-validator-mcp --mcp-http
+npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-http
 
 # Start MCP stdio server
-npx @ai-of-mine/mermaid-validator-mcp --mcp-stdio
+npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-stdio
 
 # Start MCP secure server
-npx @ai-of-mine/mermaid-validator-mcp --mcp-secure
+npx @ai-of-mine/fast-mermaid-validator-mcp --mcp-secure
 
 # Show help
-npx @ai-of-mine/mermaid-validator-mcp --help
+npx @ai-of-mine/fast-mermaid-validator-mcp --help
 ```
 
 **Alternative: Install from source**
@@ -169,7 +169,7 @@ npx @modelcontextprotocol/inspector http://localhost:8080/mcp
 1. **Install and start the MCP server:**
    ```bash
    # Install from npm
-   npm install @ai-of-mine/mermaid-validator-mcp
+   npm install @ai-of-mine/fast-mermaid-validator-mcp
 
    # Or from source
    git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git
@@ -264,7 +264,7 @@ Use get_examples to show sample diagrams for all supported types
 
 Start the API server:
 ```bash
-npx @ai-of-mine/mermaid-validator-mcp
+npx @ai-of-mine/fast-mermaid-validator-mcp
 ```
 
 The server runs on `http://localhost:8000` by default.
@@ -728,7 +728,7 @@ docker-compose up
 
 ```bash
 # Install from npm
-npm install @ai-of-mine/mermaid-validator-mcp
+npm install @ai-of-mine/fast-mermaid-validator-mcp
 
 # Or install development dependencies from source
 git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git

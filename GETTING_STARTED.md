@@ -17,7 +17,7 @@ The Mermaid Validator API is a comprehensive validation service for Mermaid diag
 ### 1. Install from NPM (Recommended)
 
 ```bash
-npm install @ai-of-mine/mermaid-validator-mcp
+npm install @ai-of-mine/fast-mermaid-validator-mcp
 ```
 
 ### 2. Or Install from Source
