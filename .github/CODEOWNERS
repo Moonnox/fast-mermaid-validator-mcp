@@ -41,8 +41,6 @@
 /LICENSE @gregoriomomm
 /NOTICE @gregoriomomm
 
-# InnerSource compliance files
+# Project governance files
 /GETTING_STARTED.md @gregoriomomm
-/STARTER_TEAM.md @gregoriomomm
-/innersource.yaml @gregoriomomm
 /CODEOWNERS @gregoriomomm

@@ -177,7 +177,7 @@ The failing tests are primarily due to:
 1. **MCP_TEST_EVIDENCE.json** - Complete test execution data
 2. **test-mcp-comprehensive.js** - Test script source code
 3. **/tmp/mcp_http_test*.log** - Server startup and runtime logs
-4. **tests/mcp/test-mcp-integration.js** - Integration test suite
+4. **test/mcp/test-mcp-integration.js** - Integration test suite
 5. This document - **MCP_TEST_EVIDENCE.md**
 
 ## 🚀 **Next Steps for Complete Verification**

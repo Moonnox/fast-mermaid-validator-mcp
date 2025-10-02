@@ -28,7 +28,7 @@ pie, gitGraph, info, architecture, radar, packet, treemap, common
 ### File Upload Endpoint (Most Used):
 ```bash
 curl -X POST http://localhost:8000/api/v1/upload/file \
-  -F 'file=@example/all_26_diagram_types.md;type=text/markdown' | jq .
+  -F 'file=@examples/diagrams/all_26_diagram_types.md;type=text/markdown' | jq .
 ```
 
 **Results:**
@@ -62,9 +62,9 @@ CustomMermaidValidator → Parser Selection →
 ## Test Coverage ✅
 
 ### Comprehensive Test Files:
-- `example/all_26_diagram_types.md`: Complete test suite for all types
-- `example/sequence_test.md`: Working example validation
-- `example/dad_child3.md`: Real-world business document testing
+- `examples/diagrams/all_26_diagram_types.md`: Complete test suite for all types
+- `examples/diagrams/sequence_test.md`: Working example validation
+- `examples/diagrams/dad_child3.md`: Real-world business document testing
 - Multiple edge case and error condition tests
 
 ## Current Validation Status

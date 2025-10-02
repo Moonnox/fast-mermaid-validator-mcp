@@ -20,7 +20,7 @@
     "dev:mcp": "npm run build:mcp && nodemon dist/mcp/server.js",
     "dev:mcp-http": "npm run build:mcp && nodemon dist/mcp/server-http.js",
     "dev:mcp-secure": "npm run build:mcp && nodemon dist/mcp/server-secure.js",
-    "test:mcp": "npm run build:mcp && node tests/mcp/test-mcp-integration.js",
+    "test:mcp": "npm run build:mcp && node test/mcp/test-mcp-integration.js",
     "prebuild": "npm run build:mcp",
     "clean": "npm run clean:generated && npm run clean:dist && npm run clean:mcp",
     "clean:generated": "rm -rf src/generated",
@@ -101,13 +101,13 @@
     "email": "gregoriomomm@gmail.com"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/gregoriomomm/mermaid-validator-mcp#readme",
+  "homepage": "https://github.com/ai-of-mine/fast-mermaid-validator-mcp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregoriomomm/mermaid-validator-mcp.git"
+    "url": "git+https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/gregoriomomm/mermaid-validator-mcp/issues"
+    "url": "https://github.com/ai-of-mine/fast-mermaid-validator-mcp/issues"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",

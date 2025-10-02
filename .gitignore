@@ -21,6 +21,7 @@ coverage/
 build/
 dist/
 out/
+package/
 
 # Optional npm cache directory
 .npm

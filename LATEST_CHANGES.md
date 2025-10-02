@@ -11,8 +11,8 @@
 
 **Files Added/Updated:**
 - `src/services/validationInstructions.js`: LLM-friendly syntax guidance generator
-- `example/lgicus01_fixed.md`: Fixed invalid ER diagrams with proper node IDs
-- `example/lgtestp2_fixed.md`: Fixed data types and relationship syntax
+- `examples/diagrams/lgicus01_fixed.md`: Fixed invalid ER diagrams with proper node IDs
+- `examples/diagrams/lgtestp2_fixed.md`: Fixed data types and relationship syntax
 - `docs/API_RESPONSES.md`: Updated with `applicableSyntax` field documentation
 - `k8s/hpa-zero-failure.yaml`: Zero-failure HPA configuration for enterprise scaling
 
@@ -132,8 +132,8 @@ MAX_FILE_SIZE=-1                      # Set any limit to -1 for unlimited
 - `MCP_TEST_EVIDENCE.md`: Complete MCP test results
 
 **Fixed Examples:**
-- `example/lgicus01_fixed.md`: Valid ER diagram with proper syntax
-- `example/lgtestp2_fixed.md`: Fixed data model with correct relationships
+- `examples/diagrams/lgicus01_fixed.md`: Valid ER diagram with proper syntax
+- `examples/diagrams/lgtestp2_fixed.md`: Fixed data model with correct relationships
 
 ### 🎯 Key Benefits for v1.0.17
 

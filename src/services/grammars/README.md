@@ -12,7 +12,7 @@ src/services/grammars/
 ├── c4/                 # C4 architecture diagrams  
 ├── class/              # UML class diagrams
 ├── er/                 # Entity relationship diagrams
-├── example/            # Template for custom diagram types
+├── examples/diagrams/            # Template for custom diagram types
 ├── flowchart/          # Flowcharts and graphs
 ├── gantt/              # Gantt charts
 ├── kanban/             # Kanban boards
@@ -47,7 +47,7 @@ src/services/grammars/
 | Timeline | `timeline/timeline.jison` | ~2KB | Chronological event timelines |
 | User Journey | `user-journey/journey.jison` | ~2KB | User experience journey maps |
 | XY Chart | `xychart/xychart.jison` | ~7KB | Line and bar charts with data series |
-| Example | `example/exampleDiagram.jison` | ~1KB | Template for creating custom diagram types |
+| Example | `examples/diagrams/exampleDiagram.jison` | ~1KB | Template for creating custom diagram types |
 
 ## Technical Information
 

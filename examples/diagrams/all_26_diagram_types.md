@@ -278,7 +278,7 @@ To test all parsers through the upload endpoint:
 ```bash
 # Test this comprehensive file
 curl -X POST http://localhost:8000/api/v1/upload/file \
-  -F 'file=@example/all_26_diagram_types.md;type=text/markdown' \
+  -F 'file=@examples/diagrams/all_26_diagram_types.md;type=text/markdown' \
   | jq '.'
 
 # Expected results:

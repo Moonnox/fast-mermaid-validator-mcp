@@ -74,7 +74,7 @@ class GrammarCompiler {
     this.grammarPaths.set('timeline', path.join(basePath, 'timeline/timeline.jison'));
     
     // Add example diagram mapping
-    this.grammarPaths.set('exampleDiagram', path.join(basePath, 'example/exampleDiagram.jison'));
+    this.grammarPaths.set('exampleDiagram', path.join(basePath, 'examples/diagrams/exampleDiagram.jison'));
     
     // These are Langium-based (packet, architecture, treemap) but add them for reference
     this.grammarPaths.set('packet-beta', 'LANGIUM'); // Langium-based

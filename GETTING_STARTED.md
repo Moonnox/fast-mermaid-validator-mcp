@@ -23,7 +23,7 @@ npm install @ai-of-mine/mermaid-validator-mcp
 ### 2. Or Install from Source
 
 ```bash
-git clone https://github.com/gregoriomomm/mermaid-validator-mcp.git
+git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git
 cd mermaid-validator-mcp
 npm install
 ```
@@ -58,7 +58,7 @@ curl -X POST http://localhost:8000/api/v1/validate \
 
 **Upload a File:**
 ```bash
-curl -F "file=@example/simple_test.md" \
+curl -F "file=@examples/diagrams/simple_test.md" \
   http://localhost:8000/api/v1/upload/file
 ```
 

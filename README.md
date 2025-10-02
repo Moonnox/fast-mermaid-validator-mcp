@@ -67,7 +67,7 @@ npx @ai-of-mine/mermaid-validator-mcp --help
 
 **Alternative: Install from source**
 ```bash
-git clone https://github.com/gregoriomomm/mermaid-validator-mcp.git
+git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git
 cd mermaid-validator-mcp
 npm install
 npm run build:mcp
@@ -172,7 +172,7 @@ npx @modelcontextprotocol/inspector http://localhost:8080/mcp
    npm install @ai-of-mine/mermaid-validator-mcp
 
    # Or from source
-   git clone https://github.com/gregoriomomm/mermaid-validator-mcp.git
+   git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git
    cd mermaid-validator-mcp
    npm install
    npm run build:mcp
@@ -731,7 +731,7 @@ docker-compose up
 npm install @ai-of-mine/mermaid-validator-mcp
 
 # Or install development dependencies from source
-git clone https://github.com/gregoriomomm/mermaid-validator-mcp.git
+git clone https://github.com/ai-of-mine/fast-mermaid-validator-mcp.git
 cd mermaid-validator-mcp
 npm install
 

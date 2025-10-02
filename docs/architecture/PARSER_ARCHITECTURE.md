@@ -153,7 +153,7 @@ The file upload endpoint handles:
 ### Example Usage
 ```bash
 curl -X POST http://localhost:8000/api/v1/upload/file \
-  -F 'file=@example/comprehensive_test.md;type=text/markdown' \
+  -F 'file=@examples/diagrams/comprehensive_test.md;type=text/markdown' \
   | jq .
 ```
 

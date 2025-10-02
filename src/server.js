@@ -358,7 +358,7 @@ MCP Endpoint (--mcp-http mode):
   http://localhost:8080/mcp                    - MCP HTTP transport
 
 Documentation:
-  https://github.com/gregoriomomm/mermaid-validator-mcp
+  https://github.com/ai-of-mine/fast-mermaid-validator-mcp
 `);
     process.exit(0);
   } else {

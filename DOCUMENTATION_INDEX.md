@@ -36,7 +36,7 @@ This document provides a comprehensive overview of all documentation available f
   - Comprehensive test cases
 
 ### Testing
-- **[MCP Integration Tests](tests/mcp/test-mcp-integration.js)** - Automated MCP server functionality tests
+- **[MCP Integration Tests](test/mcp/test-mcp-integration.js)** - Automated MCP server functionality tests
 
 ## 🔒 Security & Compliance
 
@@ -52,7 +52,6 @@ This document provides a comprehensive overview of all documentation available f
 ## 🤝 Community & Collaboration
 
 ### Project Governance
-- **[Starter Team Information](STARTER_TEAM.md)** - Initial development team and responsibilities
 - **[Pull Request Template](.github/pull_request_template.md)** - PR submission guidelines
 - **[Code Owners](CODEOWNERS)** - Project maintainers and code review assignments
 
@@ -91,7 +90,7 @@ mermaid-validator-mcp/
 ├── src/services/              # Core validation services
 ├── docs/                      # Organized documentation
 ├── examples/diagrams/         # Example Mermaid diagrams
-├── tests/mcp/                 # MCP-specific tests
+├── test/mcp/                 # MCP-specific tests
 └── dist/                      # Compiled TypeScript output
 ```
 
