@@ -4,6 +4,11 @@
 
 FROM node:20-alpine
 
+# Update packages to fix CVE-2025-9230 (libssl3, libcrypto3)
+RUN apk update && \
+    apk upgrade --no-cache libssl3 libcrypto3 && \
+    rm -rf /var/cache/apk/*
+
 # Single RUN for user creation (minimize QEMU calls)
 RUN addgroup -g 1001 nodejs && \
     adduser -u 1001 -G nodejs -s /bin/sh -D nodejs
@@ -51,6 +56,6 @@ EXPOSE 8000
 CMD ["node", "src/server.js"]
 
 # Labels
-LABEL name="mermaid-validator-mcp" \
-      version="1.0.17" \
-      description="Mermaid Validator MCP - LLM Integration Ready"
+LABEL name="fast-mermaid-validator-mcp" \
+      version="1.0.31" \
+      description="Fast Mermaid Validator MCP - LLM Integration Ready - CVE-2025-9230 Fixed"
