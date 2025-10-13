@@ -57,5 +57,5 @@ CMD ["node", "src/server.js"]
 
 # Labels
 LABEL name="fast-mermaid-validator-mcp" \
-      version="1.0.31" \
+      version="1.0.32" \
       description="Fast Mermaid Validator MCP - LLM Integration Ready - CVE-2025-9230 Fixed"
