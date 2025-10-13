@@ -2,7 +2,7 @@
 
 A comprehensive Model Context Protocol (MCP) server for validating Mermaid diagrams using grammar-based parsers. Supports 28+ Mermaid diagram types with multiple transport options and enterprise-grade performance.
 
-## 🆕 Latest Updates (v1.0.15)
+## 🆕 Latest Updates
 - ✅ **100% Environment Variable Configuration**: All limits now configurable
 - ✅ **Unlimited Processing Mode**: Set limits to `-1` for unlimited processing
 - ✅ **Enterprise Performance**: 500+ concurrent connections with nginx proxy
@@ -77,7 +77,7 @@ NODE_ENV=production MCP_AUTH_ENABLED=true npm run start:mcp-secure
 | `MCP_CORS_ORIGIN` | CORS allowed origins | * |
 | `MCP_ENABLE_SSE` | Enable Server-Sent Events | true |
 
-#### New Configurable Limits (v1.0.15)
+#### Configurable Limits
 | Variable | Description | Default | Unlimited |
 |----------|-------------|---------|--------|
 | `MAX_FILE_SIZE` | Maximum file size in bytes | 104857600 (100MB) | -1 |

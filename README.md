@@ -1,7 +1,7 @@
 # Mermaid Validator API
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.29-green)](./PROJECT_STATUS.md)
+[![npm version](https://img.shields.io/npm/v/@ai-of-mine/fast-mermaid-validator-mcp)](https://www.npmjs.com/package/@ai-of-mine/fast-mermaid-validator-mcp)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-brightgreen)](https://nodejs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue)](./Dockerfile)
 [![Open Source](https://img.shields.io/badge/Open%20Source-❤-red)](./CONTRIBUTING.md)
@@ -10,7 +10,7 @@ High-performance API and **Model Context Protocol (MCP) server** for validating 
 
 **Author**: Gregorio Elias Roecker Momm (gregoriomomm@gmail.com)
 
-## 🆕 **Latest Updates (v1.0.29)**
+## 🆕 **Latest Updates**
 
 **Unified CLI with Port Configuration:**
 - ✅ **Single Command**: One `npx` command with flags to start any server mode
@@ -744,7 +744,7 @@ npm start
 
 ### Environment Variables
 
-### **🆕 New Configurable Limits (v1.0.15)**
+### **🆕 Configurable Limits**
 
 ```bash
 # Server Configuration
@@ -1005,7 +1005,7 @@ treemap-beta
 5. **Re-validation**: Instant re-validation with optimized performance
 6. **Enterprise Scale**: Process 100MB files, 100k+ diagrams with zero limits
 
-### **Performance Capabilities (v1.0.15)**
+### **Performance Capabilities**
 - **Single Pod**: 500+ concurrent connections (with nginx proxy)
 - **Cluster Scale**: Auto-scale to 10,000+ concurrent connections
 - **Processing**: 145 req/sec sustained throughput
