@@ -14,6 +14,7 @@ We welcome contributions to the Mermaid Validator API project! This document pro
 - [Documentation](#documentation)
 - [Support](#support)
 
+
 ## Code of Conduct
 
 This project adheres to the Apache Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
