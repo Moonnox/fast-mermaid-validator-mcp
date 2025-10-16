@@ -16,7 +16,8 @@ const {
   corsMiddleware,
   helmetMiddleware,
   errorHandler,
-  requestLogger
+  requestLogger,
+  secretKeyMiddleware
 } = require('./middleware/security');
 
 // Import routes
@@ -60,6 +61,9 @@ class Server {
       extended: true, 
       limit: config.server.maxRequestSize 
     }));
+
+    // Secret key validation middleware
+    this.app.use(secretKeyMiddleware);
 
     // Ensure temp directory exists
     this.fileProcessor.startCleanupInterval();

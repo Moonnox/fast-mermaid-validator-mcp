@@ -34,11 +34,16 @@ const config = {
 
   // Security Configuration
   security: {
+    secretKey: {
+      enabled: process.env.SECRET_KEY_ENABLED !== 'false', // Enabled by default
+      key: process.env.SECRET_KEY || 'your-secret-key-here', // Set via environment variable
+      headerName: process.env.SECRET_KEY_HEADER || 'x-secret-key'
+    },
     cors: {
       origin: process.env.CORS_ORIGIN || '*',
       credentials: true,
       methods: ['GET', 'POST', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'x-secret-key']
     },
     // Rate limiting removed - delegated to API Gateway for billing control
     helmet: {

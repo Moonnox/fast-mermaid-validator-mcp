@@ -300,6 +300,68 @@ const validateContentType = (expectedTypes) => {
   };
 };
 
+/**
+ * Secret key validation middleware
+ * Validates incoming requests against a predefined secret key
+ */
+const secretKeyMiddleware = (req, res, next) => {
+  // Skip if secret key validation is disabled
+  if (!config.security.secretKey.enabled) {
+    return next();
+  }
+
+  // Skip health check endpoint
+  if (req.path === '/api/v1/health' || req.path === '/health') {
+    return next();
+  }
+
+  // Get the secret key from the request header
+  const headerName = config.security.secretKey.headerName;
+  const requestSecretKey = req.get(headerName);
+
+  // Check if secret key is provided
+  if (!requestSecretKey) {
+    logger.logSecurity('secret_key_missing', {
+      ip: req.ip,
+      userAgent: req.get('User-Agent'),
+      endpoint: req.path,
+      method: req.method
+    });
+
+    return res.status(401).json({
+      error: 'Unauthorized',
+      message: `Missing required header: ${headerName}`,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  // Validate secret key
+  const expectedSecretKey = config.security.secretKey.key;
+  if (requestSecretKey !== expectedSecretKey) {
+    logger.logSecurity('secret_key_invalid', {
+      ip: req.ip,
+      userAgent: req.get('User-Agent'),
+      endpoint: req.path,
+      method: req.method
+    });
+
+    return res.status(403).json({
+      error: 'Forbidden',
+      message: 'Invalid secret key',
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  // Secret key is valid
+  logger.logSecurity('secret_key_validated', {
+    ip: req.ip,
+    endpoint: req.path,
+    method: req.method
+  });
+
+  next();
+};
+
 module.exports = {
   // rateLimitMiddleware, // DISABLED - delegated to API Gateway
   corsMiddleware,
@@ -309,5 +371,6 @@ module.exports = {
   fileUploadSecurity,
   errorHandler,
   requestLogger,
-  validateContentType
+  validateContentType,
+  secretKeyMiddleware
 };

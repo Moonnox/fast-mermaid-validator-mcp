@@ -6,6 +6,7 @@
 import express, { Request, Response } from 'express';
 import { createServer, Server as HttpServer } from 'http';
 import { MermaidValidatorMCPServer } from '../server.js';
+import { MCPSecurityMiddleware } from '../middleware/security.js';
 const logger = require('../../../src/utils/logger');
 
 export interface HttpTransportOptions {
@@ -24,11 +25,13 @@ export class HttpTransport {
   private mcpServer: MermaidValidatorMCPServer;
   private options: HttpTransportOptions;
   private sseClients: Map<string, Response> = new Map();
+  private securityMiddleware: MCPSecurityMiddleware;
 
   constructor(mcpServer: MermaidValidatorMCPServer, options: HttpTransportOptions) {
     this.mcpServer = mcpServer;
     this.options = options;
     this.app = express();
+    this.securityMiddleware = new MCPSecurityMiddleware();
     this.setupMiddleware();
     this.setupRoutes();
   }
@@ -54,7 +57,7 @@ export class HttpTransport {
         }
 
         res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-secret-key');
 
         if (this.options.cors?.credentials) {
           res.header('Access-Control-Allow-Credentials', 'true');
@@ -78,6 +81,9 @@ export class HttpTransport {
       });
       next();
     });
+
+    // Secret key validation middleware
+    this.app.use(this.securityMiddleware.getSecretKeyMiddleware());
   }
 
   private setupRoutes(): void {

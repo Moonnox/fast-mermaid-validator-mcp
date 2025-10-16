@@ -9,6 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
 const logger = require('../../../src/utils/logger');
 
 export interface SecurityOptions {
+  secretKey?: {
+    enabled: boolean;
+    key?: string;
+    headerName?: string;
+  };
   rateLimit?: {
     windowMs?: number;
     max?: number;
@@ -34,6 +39,12 @@ export class MCPSecurityMiddleware {
 
   constructor(options: SecurityOptions = {}) {
     this.options = {
+      secretKey: {
+        enabled: process.env.SECRET_KEY_ENABLED !== 'false',
+        key: process.env.SECRET_KEY || 'your-secret-key-here',
+        headerName: process.env.SECRET_KEY_HEADER || 'x-secret-key',
+        ...options.secretKey
+      },
       rateLimit: {
         windowMs: 15 * 60 * 1000, // 15 minutes
         max: 100, // requests per window
@@ -87,6 +98,67 @@ export class MCPSecurityMiddleware {
         });
       }
     });
+  }
+
+  /**
+   * Secret key validation middleware
+   */
+  getSecretKeyMiddleware() {
+    return (req: Request, res: Response, next: NextFunction) => {
+      if (!this.options.secretKey!.enabled) {
+        return next();
+      }
+
+      // Skip health check endpoint
+      if (req.path === '/health' || req.path === '/mcp/health') {
+        return next();
+      }
+
+      const headerName = this.options.secretKey!.headerName!;
+      const requestSecretKey = req.get(headerName);
+
+      // Check if secret key is provided
+      if (!requestSecretKey) {
+        this.auditLog(req, 'SECRET_KEY_MISSING', {
+          ip: req.ip,
+          userAgent: req.get('User-Agent'),
+          endpoint: req.path,
+          method: req.method
+        });
+
+        return res.status(401).json({
+          error: 'Unauthorized',
+          message: `Missing required header: ${headerName}`,
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // Validate secret key
+      const expectedSecretKey = this.options.secretKey!.key!;
+      if (requestSecretKey !== expectedSecretKey) {
+        this.auditLog(req, 'SECRET_KEY_INVALID', {
+          ip: req.ip,
+          userAgent: req.get('User-Agent'),
+          endpoint: req.path,
+          method: req.method
+        });
+
+        return res.status(403).json({
+          error: 'Forbidden',
+          message: 'Invalid secret key',
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // Secret key is valid
+      this.auditLog(req, 'SECRET_KEY_VALIDATED', {
+        ip: req.ip,
+        endpoint: req.path,
+        method: req.method
+      });
+
+      next();
+    };
   }
 
   /**
